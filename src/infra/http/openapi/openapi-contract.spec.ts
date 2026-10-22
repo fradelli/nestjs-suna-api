@@ -35,7 +35,7 @@ type OpenApiContractDocument = {
   paths: Record<string, PathItemObject>;
 };
 
-const openApiArtifactPath = path.resolve('openapi', 'sandicts-api.json');
+const openApiArtifactPath = path.resolve('openapi', 'suna-api.json');
 const openApiDocument = JSON.parse(
   readFileSync(openApiArtifactPath, 'utf8'),
 ) as OpenApiContractDocument;

@@ -1783,7 +1783,7 @@
     }
   },
   "info": {
-    "title": "Sandicts API",
+    "title": "Suna API",
     "description": "API documentation generated from Nest controllers and Zod schemas.",
     "version": "1.0.0",
     "contact": {}

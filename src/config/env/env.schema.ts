@@ -149,7 +149,7 @@ const envSchema = z
       .string()
       .trim()
       .min(minimumNonEmptyStringLength)
-      .default('Sandicts'),
+      .default('Suna'),
     EMAIL_REPLY_TO_ADDRESS: optionalEmailFromEnv,
     WEB_APP_BASE_URL: optionalStringFromEnv.pipe(z.string().url().optional()),
     RESEND_API_KEY: optionalStringFromEnv,

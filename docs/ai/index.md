@@ -52,6 +52,7 @@ Short catalog. Routing hints (`read-when`, `do-not-read-when`, `related`, `canon
 | [`docs/ai/task-finalization-workflow.md`](task-finalization-workflow.md)                                                 | Task finish, commit, and PR title workflow                  |
 | [`docs/ai/logging/logging-foundation.md`](logging/logging-foundation.md)                                                 | Logging baseline with nestjs-pino                           |
 | [`docs/ai/operations/beta-tester-access.md`](operations/beta-tester-access.md)                                           | Closed Beta access and privacy operations                   |
+| [`docs/ai/operations/suna-rebranding-transition.md`](operations/suna-rebranding-transition.md)                           | Suna backend identity and Sandicts compatibility boundary   |
 | [`docs/ai/product/README.md`](product/README.md)                                                                         | Pointer to shared product, scope, glossary, and Jira docs   |
 | [`docs/frontend/README.md`](../frontend/README.md)                                                                       | Pointer to frontend docs in `fradelli/reactjs-sandicts-web` |
 

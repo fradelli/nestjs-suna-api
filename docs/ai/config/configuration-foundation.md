@@ -292,7 +292,7 @@ Purpose:
 
 - allow credentialed browser requests only from approved frontend origins
 - keep local, staging, and production origins explicit
-- optionally accept ephemeral preview URLs owned by one Sandicts Vercel project
+- optionally accept ephemeral preview URLs owned by the current legacy Sandicts Vercel project
   and team in staging
 
 Current shape:
@@ -382,18 +382,19 @@ CORS_VERCEL_PREVIEW_PROJECT_SLUG=
 CORS_VERCEL_PREVIEW_TEAM_SLUG=
 
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=sandicts
-POSTGRES_DB=sandicts
+POSTGRES_PASSWORD=suna
+POSTGRES_DB=suna
+POSTGRES_VOLUME_NAME=suna-postgres-18-data
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
-DATABASE_URL=postgresql://postgres:sandicts@localhost:5432/sandicts
+DATABASE_URL=postgresql://postgres:suna@localhost:5432/suna
 
 LOG_LEVEL=debug
 LOG_PRETTY=true
 DOCS_ENABLED=true
 DOCS_PATH=docs
 OBSERVABILITY_ENABLED=false
-OBSERVABILITY_SERVICE_NAME=sandicts-api
+OBSERVABILITY_SERVICE_NAME=suna-api
 
 AUTH_ACCESS_TOKEN_SECRET=dev-only-auth-secret-minimum-32-chars-change-me
 AUTH_ACCESS_TOKEN_TTL_SECONDS=900
@@ -408,7 +409,7 @@ AUTH_COOKIE_SECURE=false
 
 EMAIL_DELIVERY_PROVIDER=smtp
 EMAIL_FROM_ADDRESS=auth@sandicts.test
-EMAIL_FROM_NAME=Sandicts
+EMAIL_FROM_NAME=Suna
 EMAIL_REPLY_TO_ADDRESS=
 WEB_APP_BASE_URL=http://localhost:3001
 

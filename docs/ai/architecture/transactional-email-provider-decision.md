@@ -61,25 +61,25 @@ Rules:
 
 ## Provider Comparison
 
-| Provider | MVP fit | Tradeoff |
-| --- | --- | --- |
-| Resend | Chosen for MVP because it has a developer-focused REST API, Node-friendly integration, custom domains, webhook support, and safe test addresses. | Younger operational track record than older transactional providers; keep adapter portable. |
-| Postmark | Strong future fallback for transactional deliverability, sandbox servers, analytics, and mature auth-style email flows. | Higher starting cost and less compelling MVP DX than Resend for this project. |
-| Amazon SES | Strong future fallback for low cost and AWS-scale production delivery. | Requires more account, IAM, sandbox exit, reputation, and deliverability operations than the MVP should absorb. |
-| SendGrid | Capable API provider with broad ecosystem and security features. | Broader platform and plan structure are heavier than needed for MVP magic links. |
-| Mailgun | Capable API/SMTP provider with tracking, analytics, webhooks, and authentication protocols. | Also broader than needed for MVP; keep as a later migration candidate rather than the first implementation. |
+| Provider   | MVP fit                                                                                                                                          | Tradeoff                                                                                                        |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| Resend     | Chosen for MVP because it has a developer-focused REST API, Node-friendly integration, custom domains, webhook support, and safe test addresses. | Younger operational track record than older transactional providers; keep adapter portable.                     |
+| Postmark   | Strong future fallback for transactional deliverability, sandbox servers, analytics, and mature auth-style email flows.                          | Higher starting cost and less compelling MVP DX than Resend for this project.                                   |
+| Amazon SES | Strong future fallback for low cost and AWS-scale production delivery.                                                                           | Requires more account, IAM, sandbox exit, reputation, and deliverability operations than the MVP should absorb. |
+| SendGrid   | Capable API provider with broad ecosystem and security features.                                                                                 | Broader platform and plan structure are heavier than needed for MVP magic links.                                |
+| Mailgun    | Capable API/SMTP provider with tracking, analytics, webhooks, and authentication protocols.                                                      | Also broader than needed for MVP; keep as a later migration candidate rather than the first implementation.     |
 
 ## Environment Strategy
 
 Use different adapters by environment:
 
-| Environment | Delivery path | Rule |
-| --- | --- | --- |
-| Unit tests | fake or in-memory `EmailGateway` | Assert use case behavior without network or SMTP. |
-| Local development | Mailpit SMTP capture | Capture real email content locally without sending to an inbox. |
-| E2E | Mailpit SMTP capture | Playwright should read the magic link from Mailpit's HTTP API or a test helper that reads Mailpit, not from logs. |
-| Staging | Resend with restricted sender/domain and test recipients until domain setup is verified | Exercise the real provider without broad user delivery. |
-| Production | Resend with verified Sandicts sender domain | Send real auth magic links. |
+| Environment       | Delivery path                                                                           | Rule                                                                                                              |
+| ----------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Unit tests        | fake or in-memory `EmailGateway`                                                        | Assert use case behavior without network or SMTP.                                                                 |
+| Local development | Mailpit SMTP capture                                                                    | Capture real email content locally without sending to an inbox.                                                   |
+| E2E               | Mailpit SMTP capture                                                                    | Playwright should read the magic link from Mailpit's HTTP API or a test helper that reads Mailpit, not from logs. |
+| Staging           | Resend with restricted sender/domain and test recipients until domain setup is verified | Exercise the real provider without broad user delivery.                                                           |
+| Production        | Resend with the currently verified Sandicts sender domain                               | Send real Suna auth magic links.                                                                                  |
 
 The current `DevelopmentEmailGateway` can remain a unit-test or temporary local
 adapter while KAN-103 implements provider selection. Integrated local and E2E
@@ -95,19 +95,19 @@ application logs.
 KAN-103 should add typed config for these variables or semantically equivalent
 names:
 
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `EMAIL_DELIVERY_PROVIDER` | Yes | Selects `resend`, `smtp`, or test/development adapter. |
-| `EMAIL_FROM_ADDRESS` | Yes outside unit tests | Sender address used for auth emails. |
-| `EMAIL_FROM_NAME` | No | Human-readable sender name, defaulting to `Sandicts`. |
-| `EMAIL_REPLY_TO_ADDRESS` | No | Reply-to address if product/support wants one. |
-| `WEB_APP_BASE_URL` | Yes for magic links | Frontend origin used to build magic link URLs. |
-| `RESEND_API_KEY` | Required when `EMAIL_DELIVERY_PROVIDER=resend` | Resend API credential. |
-| `SMTP_HOST` | Required when `EMAIL_DELIVERY_PROVIDER=smtp` | SMTP host, usually Mailpit locally. |
-| `SMTP_PORT` | Required when `EMAIL_DELIVERY_PROVIDER=smtp` | SMTP port, usually `1025` for Mailpit. |
-| `SMTP_SECURE` | No | Whether SMTP uses TLS. Local Mailpit defaults to false. |
-| `SMTP_USER` | Optional | SMTP username when the selected SMTP server needs auth. |
-| `SMTP_PASSWORD` | Optional | SMTP password when the selected SMTP server needs auth. |
+| Variable                  | Required                                       | Purpose                                                 |
+| ------------------------- | ---------------------------------------------- | ------------------------------------------------------- |
+| `EMAIL_DELIVERY_PROVIDER` | Yes                                            | Selects `resend`, `smtp`, or test/development adapter.  |
+| `EMAIL_FROM_ADDRESS`      | Yes outside unit tests                         | Sender address used for auth emails.                    |
+| `EMAIL_FROM_NAME`         | No                                             | Human-readable sender name, defaulting to `Suna`.       |
+| `EMAIL_REPLY_TO_ADDRESS`  | No                                             | Reply-to address if product/support wants one.          |
+| `WEB_APP_BASE_URL`        | Yes for magic links                            | Frontend origin used to build magic link URLs.          |
+| `RESEND_API_KEY`          | Required when `EMAIL_DELIVERY_PROVIDER=resend` | Resend API credential.                                  |
+| `SMTP_HOST`               | Required when `EMAIL_DELIVERY_PROVIDER=smtp`   | SMTP host, usually Mailpit locally.                     |
+| `SMTP_PORT`               | Required when `EMAIL_DELIVERY_PROVIDER=smtp`   | SMTP port, usually `1025` for Mailpit.                  |
+| `SMTP_SECURE`             | No                                             | Whether SMTP uses TLS. Local Mailpit defaults to false. |
+| `SMTP_USER`               | Optional                                       | SMTP username when the selected SMTP server needs auth. |
+| `SMTP_PASSWORD`           | Optional                                       | SMTP password when the selected SMTP server needs auth. |
 
 Existing auth settings still apply:
 
@@ -122,7 +122,7 @@ secret store for the deployment target.
 
 Before production delivery:
 
-- verify the Sandicts sending domain in Resend
+- keep the verified Sandicts sending domain in Resend until the domain migration
 - configure DNS records required by the provider, including SPF, DKIM, and DMARC
   where applicable
 - use a stable auth sender address such as `auth@<sandicts-domain>`

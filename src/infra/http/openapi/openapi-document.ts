@@ -8,7 +8,7 @@ import { cleanupOpenApiDoc } from 'nestjs-zod';
 
 function buildOpenApiDocument(app: INestApplication): OpenAPIObject {
   const openApiConfig = new DocumentBuilder()
-    .setTitle('Sandicts API')
+    .setTitle('Suna API')
     .setDescription(
       'API documentation generated from Nest controllers and Zod schemas.',
     )

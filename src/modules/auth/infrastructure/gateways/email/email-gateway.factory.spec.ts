@@ -10,7 +10,7 @@ import { SmtpEmailGateway } from './smtp-email.gateway';
 
 const base = {
   fromAddress: 'auth@sandicts.test',
-  fromName: 'Sandicts',
+  fromName: 'Suna',
   replyToAddress: null,
   webAppBaseUrl: 'http://localhost:3001',
 };
