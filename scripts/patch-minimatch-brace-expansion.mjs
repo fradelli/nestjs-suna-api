@@ -6,8 +6,11 @@ import { dirname, resolve } from "node:path";
 // exposes a named `expand` export, while minimatch 3 expects the legacy module
 // itself to be callable. Remove this script when no minimatch 3 installation
 // remains in the supported ESLint/Nest CLI dependency tree.
-const legacyImport = "var expand = require('brace-expansion')";
+const legacyImportPattern =
+  /var expand = require\('brace-expansion'\)(?!\.expand)/;
 const patchedImport = "var expand = require('brace-expansion').expand";
+const patchedImportPattern =
+  /var expand = require\('brace-expansion'\)(?:\.expand)+/;
 let patchedPackages = 0;
 
 for await (const minimatchPackagePath of glob(
@@ -28,18 +31,22 @@ for await (const minimatchPackagePath of glob(
   const minimatchSource = await readFile(minimatchEntryPath, "utf8");
 
   if (
-    !minimatchSource.includes(legacyImport) &&
-    !minimatchSource.includes(patchedImport)
+    !legacyImportPattern.test(minimatchSource) &&
+    !patchedImportPattern.test(minimatchSource)
   ) {
     throw new Error(
       `Could not find the expected brace-expansion import in ${minimatchPackagePath}.`,
     );
   }
 
-  if (minimatchSource.includes(legacyImport)) {
+  const normalizedMinimatchSource = minimatchSource
+    .replace(patchedImportPattern, patchedImport)
+    .replace(legacyImportPattern, patchedImport);
+
+  if (normalizedMinimatchSource !== minimatchSource) {
     await writeFile(
       minimatchEntryPath,
-      minimatchSource.replace(legacyImport, patchedImport),
+      normalizedMinimatchSource,
       "utf8",
     );
   }
