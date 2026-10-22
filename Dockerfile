@@ -10,6 +10,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY scripts/patch-minimatch-brace-expansion.mjs ./scripts/patch-minimatch-brace-expansion.mjs
+COPY scripts/rewrite-compiled-path-aliases.mjs ./scripts/rewrite-compiled-path-aliases.mjs
 RUN npm ci
 
 COPY prisma ./prisma

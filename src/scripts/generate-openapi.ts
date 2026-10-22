@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { buildOpenApiDocument } from '@infra/http/openapi/openapi-document';
 
-const openApiOutputPath = path.resolve('openapi', 'sandicts-api.json');
+const openApiOutputPath = path.resolve('openapi', 'suna-api.json');
 
 async function generateOpenApiArtifact() {
   applyGenerationEnvironmentDefaults();
@@ -33,12 +33,12 @@ function applyGenerationEnvironmentDefaults() {
   const defaults = {
     NODE_ENV: 'test',
     APP_ENV: 'test',
-    DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/sandicts',
+    DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/suna',
     POSTGRES_HOST: 'localhost',
     POSTGRES_PORT: '5432',
     POSTGRES_USER: 'postgres',
     POSTGRES_PASSWORD: 'postgres',
-    POSTGRES_DB: 'sandicts',
+    POSTGRES_DB: 'suna',
   } as const;
 
   for (const [name, value] of Object.entries(defaults)) {

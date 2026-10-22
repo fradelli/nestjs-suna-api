@@ -17,7 +17,7 @@ describe('buildEmailConfig', () => {
     expect(settings).toMatchObject({
       provider: 'smtp',
       fromAddress: 'auth@sandicts.test',
-      fromName: 'Sandicts',
+      fromName: 'Suna',
       webAppBaseUrl: 'http://localhost:3001',
       host: 'localhost',
       port: 1025,
@@ -54,7 +54,7 @@ describe('buildEmailConfig', () => {
       provider: 'resend',
       apiKey: 'resend-api-key',
       fromAddress: 'auth@sandicts.com',
-      fromName: 'Sandicts',
+      fromName: 'Suna',
       replyToAddress: 'support@sandicts.com',
       webAppBaseUrl: 'https://app.sandicts.com',
     });

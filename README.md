@@ -1,6 +1,6 @@
-# Sandicts API Backend
+# Suna API Backend
 
-Backend API for Sandicts, a marketplace and community platform for sand sports
+Backend API for Suna, a marketplace and community platform for sand sports
 such as footvolley, beach tennis, beach volleyball, and similar court-based
 sports.
 
@@ -35,7 +35,7 @@ foundation for web first and mobile later.
 
 ## Product Context
 
-Sandicts is a marketplace for sand sports.
+Suna is a marketplace for sand sports.
 
 Core user groups:
 
@@ -44,7 +44,7 @@ Core user groups:
 - `Organization`: courts, venues, arenas, clubs, or organizers that manage
   availability, reservations, courts, events, and financial visibility.
 - `Academy`: training, coaches, classes, students, and plans context.
-- `Admin App`: internal Sandicts operator context, introduced only when real operational
+- `Admin App`: internal Suna operator context, introduced only when real operational
   flows require manual review, support, moderation, or controlled status
   changes.
 
@@ -77,7 +77,7 @@ Implemented:
 - global HTTP rate limiting with stricter magic link endpoint throttles
 - Swagger/OpenAPI generated from Zod-backed DTOs
 - global exception filter with normalized public error responses
-- typed credentialed CORS with exact environment origins and scoped Sandicts
+- typed credentialed CORS with exact environment origins and scoped legacy Sandicts
   Vercel pull request previews
 - structured logging with request correlation
 - authentication/session domain foundation
@@ -200,8 +200,8 @@ docker compose up -d postgres mailpit
 The local PostgreSQL service uses:
 
 - image: `bitnami/postgresql:16`
-- container: `sandicts-postgres`
-- volume: `sandicts-postgres-data`
+- container: `suna-postgres`
+- volume: `suna-postgres-18-data`
 - healthcheck: `pg_isready`
 
 Mailpit captures local email without delivering it to a real inbox:
@@ -289,7 +289,7 @@ Rules:
 | Variable | Required | Default | Description |
 | --- | --- | --- | --- |
 | `CORS_ALLOWED_ORIGINS` | Yes in deployed environments | `http://localhost:3001` | Comma-separated exact frontend origins. |
-| `CORS_VERCEL_PREVIEW_PROJECT_SLUG` | With team slug in staging | none | Vercel project slug accepted for ephemeral Sandicts previews. |
+| `CORS_VERCEL_PREVIEW_PROJECT_SLUG` | With team slug in staging | none | Current Vercel project slug accepted for ephemeral previews. |
 | `CORS_VERCEL_PREVIEW_TEAM_SLUG` | With project slug in staging | none | Vercel team slug that owns accepted preview URLs. |
 
 Rules:
@@ -376,7 +376,7 @@ delivery path. Both adapters are selected behind `EMAIL_GATEWAY`.
 | --- | --- | --- | --- |
 | `EMAIL_DELIVERY_PROVIDER` | Staging/production | Environment-specific | `smtp` locally, `development` in unit tests, and `resend` in staging/production. |
 | `EMAIL_FROM_ADDRESS` | Staging/production | `auth@sandicts.test` locally | Sender address used for auth emails. |
-| `EMAIL_FROM_NAME` | No | `Sandicts` | Human-readable sender name. |
+| `EMAIL_FROM_NAME` | No | `Suna` | Human-readable sender name. |
 | `EMAIL_REPLY_TO_ADDRESS` | No | none | Optional reply-to address. |
 | `WEB_APP_BASE_URL` | Staging/production | `http://localhost:3001` locally | Trusted frontend origin used to build `/sign-in/magic-link`. |
 | `RESEND_API_KEY` | When provider is Resend | none | Resend API credential. |
@@ -450,7 +450,7 @@ Main responsibilities:
 | `.github/workflows` | CI/CD workflows. |
 | `docs/ai` | Durable project context and source-of-truth technical/product docs. |
 | `docs/frontend` | Pointer to frontend docs now owned by `fradelli/reactjs-sandicts-web`. |
-| `openapi/sandicts-api.json` | Canonical generated OpenAPI artifact consumed by frontend code generation. |
+| `openapi/suna-api.json` | Canonical generated OpenAPI artifact consumed by frontend code generation. |
 | `prisma/schema.prisma` | Main Prisma generator and datasource configuration. |
 | `prisma/models` | Domain-grouped Prisma models. |
 | `prisma/migrations` | Database migrations. |
@@ -665,7 +665,7 @@ Status contract:
 ### `POST /auth/google/sign-in`
 
 Validates a Google Sign-In or Google One Tap ID token, resolves or creates the
-Sandicts account, stores Google `sub` as the external provider subject, creates
+Suna account, stores Google `sub` as the external provider subject, creates
 the internal auth session, sets the refresh token cookie, and returns
 account/session access data.
 
@@ -996,7 +996,7 @@ Security rules:
   login for the passwordless web MVP unless product direction changes.
 - If cookies become cross-site with `SameSite=None`, revisit CSRF protection
   before public launch.
-- Browser CORS accepts exact configured origins with credentials. Sandicts
+- Browser CORS accepts exact configured origins with credentials. Legacy Sandicts
   Vercel pull request origins are scoped by both project and team and are
   staging-only.
 - Move rate-limit storage to a distributed backend and add normalized-email

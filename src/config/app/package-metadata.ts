@@ -7,7 +7,7 @@ type PackageMetadata = {
 };
 
 const defaultPackageMetadata: PackageMetadata = {
-  name: 'sandicts-api',
+  name: 'suna-api',
   version: '0.0.1',
 };
 

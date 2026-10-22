@@ -7,7 +7,7 @@ const settings: ResendEmailConfig = {
   provider: 'resend',
   apiKey: 'resend-api-key',
   fromAddress: 'auth@sandicts.com',
-  fromName: 'Sandicts',
+  fromName: 'Suna',
   replyToAddress: 'support@sandicts.com',
   webAppBaseUrl: 'https://app.sandicts.com',
 };
@@ -43,10 +43,10 @@ describe('ResendEmailGateway', () => {
 
     expect(send).toHaveBeenCalledWith(
       expect.objectContaining({
-        from: 'Sandicts <auth@sandicts.com>',
+        from: 'Suna <auth@sandicts.com>',
         to: 'player@example.com',
         replyTo: 'support@sandicts.com',
-        subject: 'Sign in to Sandicts',
+        subject: 'Sign in to Suna',
       }),
     );
   });

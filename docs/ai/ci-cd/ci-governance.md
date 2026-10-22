@@ -144,7 +144,7 @@ Rules:
 
 - source branch must match the naming convention or be one of the protected branches
 - target branch must be one of the protected branches
-- title must follow the Sandicts Jira-prefixed Conventional Commit format
+- title must follow the Suna Jira-prefixed Conventional Commit format
 - description must use the repository PR template, keep required headings, replace raw placeholders, and include the matching primary Jira key
 - temporary work branches target only `developer`
 - `staging` accepts promotion PRs only from `developer`

@@ -28,7 +28,7 @@ const loggerSettings = {
 
 const observabilitySettings = {
   enabled: false,
-  serviceName: 'sandicts-api',
+  serviceName: 'suna-api',
 } as const;
 
 describe('createPinoLoggerOptions', () => {

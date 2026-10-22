@@ -5,7 +5,7 @@ import type { SmtpEmailTransport } from './smtp-email.gateway.types';
 const settings: SmtpEmailConfig = {
   provider: 'smtp',
   fromAddress: 'auth@sandicts.test',
-  fromName: 'Sandicts',
+  fromName: 'Suna',
   replyToAddress: null,
   webAppBaseUrl: 'http://localhost:3001',
   host: 'localhost',
@@ -42,10 +42,10 @@ describe('SmtpEmailGateway', () => {
       expect.objectContaining({
         from: {
           address: 'auth@sandicts.test',
-          name: 'Sandicts',
+          name: 'Suna',
         },
         to: 'player@example.com',
-        subject: 'Sign in to Sandicts',
+        subject: 'Sign in to Suna',
       }),
     );
   });
