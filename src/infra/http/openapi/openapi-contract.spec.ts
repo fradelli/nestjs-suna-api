@@ -196,7 +196,7 @@ describe('OpenAPI contract', () => {
   );
 
   it('publishes one reusable public error envelope', () => {
-    const schema = openApiDocument.components?.schemas?.ApiErrorResponse;
+    const schema = readComponentSchema('ApiErrorResponse');
 
     expect(schema).toMatchObject({
       type: 'object',
@@ -248,6 +248,31 @@ function readOperation(operationKey: string): OperationObject {
   }
 
   return operation;
+}
+
+function readComponentSchema(componentName: string): SchemaObject {
+  const schemas = openApiDocument.components?.schemas;
+  let schema = schemas?.[componentName];
+  const visitedReferences = new Set<string>();
+
+  while (schema && isReferenceObject(schema)) {
+    if (visitedReferences.has(schema.$ref)) {
+      throw new Error(`Circular OpenAPI schema reference: ${schema.$ref}`);
+    }
+
+    visitedReferences.add(schema.$ref);
+    const referencedComponentName = schema.$ref.replace(
+      '#/components/schemas/',
+      '',
+    );
+    schema = schemas?.[referencedComponentName];
+  }
+
+  if (!schema) {
+    throw new Error(`Missing OpenAPI component schema: ${componentName}`);
+  }
+
+  return schema;
 }
 
 function readJsonResponseSchema(
