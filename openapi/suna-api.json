@@ -11,7 +11,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HealthResponse_Output"
+                  "$ref": "#/components/schemas/HealthResponseDto_Output"
                 }
               }
             }
@@ -33,7 +33,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HealthResponse_Output"
+                  "$ref": "#/components/schemas/HealthResponseDto_Output"
                 }
               }
             }
@@ -43,7 +43,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HealthResponse"
+                  "$ref": "#/components/schemas/HealthResponseDto"
                 }
               }
             }
@@ -65,7 +65,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RequestMagicLinkBody"
+                "$ref": "#/components/schemas/RequestMagicLinkBodyDto"
               }
             }
           }
@@ -76,7 +76,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RequestMagicLinkResponse_Output"
+                  "$ref": "#/components/schemas/RequestMagicLinkResponseDto_Output"
                 }
               }
             }
@@ -210,7 +210,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConsumeMagicLinkBody"
+                "$ref": "#/components/schemas/ConsumeMagicLinkBodyDto"
               }
             }
           }
@@ -221,7 +221,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConsumeMagicLinkResponse_Output"
+                  "$ref": "#/components/schemas/ConsumeMagicLinkResponseDto_Output"
                 }
               }
             }
@@ -440,7 +440,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GoogleSignInBody"
+                "$ref": "#/components/schemas/GoogleSignInBodyDto"
               }
             }
           }
@@ -451,7 +451,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GoogleSignInResponse_Output"
+                  "$ref": "#/components/schemas/GoogleSignInResponseDto_Output"
                 }
               }
             }
@@ -642,7 +642,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RefreshAuthSessionResponse_Output"
+                  "$ref": "#/components/schemas/RefreshAuthSessionResponseDto_Output"
                 }
               }
             }
@@ -1011,7 +1011,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCurrentAuthSessionResponse_Output"
+                  "$ref": "#/components/schemas/GetCurrentAuthSessionResponseDto_Output"
                 }
               }
             }
@@ -1147,7 +1147,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListSportsResponse_Output"
+                  "$ref": "#/components/schemas/ListSportsResponseDto_Output"
                 }
               }
             }
@@ -1236,7 +1236,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentPlayerProfileResponse_Output"
+                  "$ref": "#/components/schemas/CurrentPlayerProfileResponseDto_Output"
                 }
               }
             }
@@ -1379,7 +1379,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateCurrentPlayerProfileBody"
+                "$ref": "#/components/schemas/CreateCurrentPlayerProfileBodyDto"
               }
             }
           }
@@ -1390,7 +1390,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentPlayerProfileResponse_Output"
+                  "$ref": "#/components/schemas/CurrentPlayerProfileResponseDto_Output"
                 }
               }
             }
@@ -1589,7 +1589,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentPlayerProfileBody"
+                "$ref": "#/components/schemas/UpdateCurrentPlayerProfileBodyDto"
               }
             }
           }
@@ -1600,7 +1600,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentPlayerProfileResponse_Output"
+                  "$ref": "#/components/schemas/CurrentPlayerProfileResponseDto_Output"
                 }
               }
             }
@@ -1806,10 +1806,13 @@
         "required": [
           "status"
         ],
-        "id": "HealthResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "HealthResponse_Output"
       },
-      "HealthResponse": {
+      "HealthResponseDto_Output": {
+        "$ref": "#/components/schemas/HealthResponse_Output"
+      },
+      "HealthResponseDtoHealthResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -1822,36 +1825,12 @@
         },
         "required": [
           "status"
-        ],
-        "id": "HealthResponse"
+        ]
       },
-      "ApiValidationIssue": {
-        "type": "object",
-        "properties": {
-          "path": {
-            "type": "array",
-            "items": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                }
-              ]
-            }
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "path",
-          "message"
-        ],
-        "id": "ApiValidationIssue"
+      "HealthResponseDto": {
+        "$ref": "#/components/schemas/HealthResponseDtoHealthResponse"
       },
-      "ApiErrorResponse": {
+      "ApiErrorResponseApiErrorResponse": {
         "type": "object",
         "properties": {
           "statusCode": {
@@ -1896,7 +1875,7 @@
           "timestamp": {
             "type": "string",
             "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
           },
           "requestId": {
             "type": "string"
@@ -1904,7 +1883,7 @@
           "issues": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ApiValidationIssue"
+              "$ref": "#/components/schemas/ApiErrorResponseApiValidationIssue"
             }
           }
         },
@@ -1915,22 +1894,47 @@
           "path",
           "timestamp",
           "requestId"
-        ],
-        "id": "ApiErrorResponse"
+        ]
       },
-      "RequestMagicLinkBody": {
+      "ApiErrorResponseApiValidationIssue": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number"
+              ]
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "message"
+        ]
+      },
+      "ApiErrorResponse": {
+        "$ref": "#/components/schemas/ApiErrorResponseApiErrorResponse"
+      },
+      "RequestMagicLinkBodyDtoRequestMagicLinkBody": {
         "type": "object",
         "properties": {
           "email": {
             "type": "string",
             "format": "email",
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
           }
         },
         "required": [
           "email"
-        ],
-        "id": "RequestMagicLinkBody"
+        ]
+      },
+      "RequestMagicLinkBodyDto": {
+        "$ref": "#/components/schemas/RequestMagicLinkBodyDtoRequestMagicLinkBody"
       },
       "RequestMagicLinkResponse_Output": {
         "type": "object",
@@ -1943,10 +1947,13 @@
         "required": [
           "status"
         ],
-        "id": "RequestMagicLinkResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "RequestMagicLinkResponse_Output"
       },
-      "ConsumeMagicLinkBody": {
+      "RequestMagicLinkResponseDto_Output": {
+        "$ref": "#/components/schemas/RequestMagicLinkResponse_Output"
+      },
+      "ConsumeMagicLinkBodyDtoConsumeMagicLinkBody": {
         "type": "object",
         "properties": {
           "token": {
@@ -1957,8 +1964,37 @@
         },
         "required": [
           "token"
+        ]
+      },
+      "ConsumeMagicLinkBodyDto": {
+        "$ref": "#/components/schemas/ConsumeMagicLinkBodyDtoConsumeMagicLinkBody"
+      },
+      "ConsumeMagicLinkResponse_Output": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/AuthAccountResponse_Output"
+          },
+          "session": {
+            "$ref": "#/components/schemas/AuthSessionResponse_Output"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "accessTokenExpiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          }
+        },
+        "required": [
+          "account",
+          "session",
+          "accessToken",
+          "accessTokenExpiresAt"
         ],
-        "id": "ConsumeMagicLinkBody"
+        "additionalProperties": false,
+        "id": "ConsumeMagicLinkResponse_Output"
       },
       "AuthAccountResponse_Output": {
         "type": "object",
@@ -1969,16 +2005,12 @@
           "email": {
             "type": "string",
             "format": "email",
-            "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
           },
           "displayName": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           }
         },
@@ -2003,34 +2035,10 @@
         "additionalProperties": false,
         "id": "AuthSessionResponse_Output"
       },
-      "ConsumeMagicLinkResponse_Output": {
-        "type": "object",
-        "properties": {
-          "account": {
-            "$ref": "#/components/schemas/AuthAccountResponse_Output"
-          },
-          "session": {
-            "$ref": "#/components/schemas/AuthSessionResponse_Output"
-          },
-          "accessToken": {
-            "type": "string"
-          },
-          "accessTokenExpiresAt": {
-            "type": "string",
-            "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
-          }
-        },
-        "required": [
-          "account",
-          "session",
-          "accessToken",
-          "accessTokenExpiresAt"
-        ],
-        "id": "ConsumeMagicLinkResponse_Output",
-        "additionalProperties": false
+      "ConsumeMagicLinkResponseDto_Output": {
+        "$ref": "#/components/schemas/ConsumeMagicLinkResponse_Output"
       },
-      "GoogleSignInBody": {
+      "GoogleSignInBodyDtoGoogleSignInBody": {
         "type": "object",
         "properties": {
           "credential": {
@@ -2043,8 +2051,10 @@
             "minLength": 10,
             "maxLength": 4096
           }
-        },
-        "id": "GoogleSignInBody"
+        }
+      },
+      "GoogleSignInBodyDto": {
+        "$ref": "#/components/schemas/GoogleSignInBodyDtoGoogleSignInBody"
       },
       "GoogleSignInResponse_Output": {
         "type": "object",
@@ -2061,7 +2071,7 @@
           "accessTokenExpiresAt": {
             "type": "string",
             "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
           }
         },
         "required": [
@@ -2070,8 +2080,11 @@
           "accessToken",
           "accessTokenExpiresAt"
         ],
-        "id": "GoogleSignInResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "GoogleSignInResponse_Output"
+      },
+      "GoogleSignInResponseDto_Output": {
+        "$ref": "#/components/schemas/GoogleSignInResponse_Output"
       },
       "RefreshAuthSessionResponse_Output": {
         "type": "object",
@@ -2088,7 +2101,7 @@
           "accessTokenExpiresAt": {
             "type": "string",
             "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
           }
         },
         "required": [
@@ -2097,8 +2110,11 @@
           "accessToken",
           "accessTokenExpiresAt"
         ],
-        "id": "RefreshAuthSessionResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "RefreshAuthSessionResponse_Output"
+      },
+      "RefreshAuthSessionResponseDto_Output": {
+        "$ref": "#/components/schemas/RefreshAuthSessionResponse_Output"
       },
       "GetCurrentAuthSessionResponse_Output": {
         "type": "object",
@@ -2114,8 +2130,34 @@
           "account",
           "session"
         ],
-        "id": "GetCurrentAuthSessionResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "GetCurrentAuthSessionResponse_Output"
+      },
+      "GetCurrentAuthSessionResponseDto_Output": {
+        "$ref": "#/components/schemas/GetCurrentAuthSessionResponse_Output"
+      },
+      "ListSportsResponse_Output": {
+        "type": "object",
+        "properties": {
+          "sports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SportResponse_Output"
+            }
+          },
+          "levels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlayerLevelOptionResponse_Output"
+            }
+          }
+        },
+        "required": [
+          "sports",
+          "levels"
+        ],
+        "additionalProperties": false,
+        "id": "ListSportsResponse_Output"
       },
       "SportResponse_Output": {
         "type": "object",
@@ -2176,28 +2218,32 @@
         "additionalProperties": false,
         "id": "PlayerLevelOptionResponse_Output"
       },
-      "ListSportsResponse_Output": {
+      "ListSportsResponseDto_Output": {
+        "$ref": "#/components/schemas/ListSportsResponse_Output"
+      },
+      "CurrentPlayerProfileResponse_Output": {
         "type": "object",
         "properties": {
-          "sports": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SportResponse_Output"
-            }
+          "profile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlayerProfileResponse_Output"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
-          "levels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlayerLevelOptionResponse_Output"
-            }
+          "completion": {
+            "$ref": "#/components/schemas/PlayerProfileCompletionResponse_Output"
           }
         },
         "required": [
-          "sports",
-          "levels"
+          "profile",
+          "completion"
         ],
-        "id": "ListSportsResponse_Output",
-        "additionalProperties": false
+        "additionalProperties": false,
+        "id": "CurrentPlayerProfileResponse_Output"
       },
       "PlayerProfileResponse_Output": {
         "type": "object",
@@ -2206,13 +2252,9 @@
             "type": "string"
           },
           "displayName": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
+            "type": [
+              "string",
+              "null"
             ]
           },
           "mainSport": {
@@ -2231,12 +2273,12 @@
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
           }
         },
         "required": [
@@ -2305,49 +2347,10 @@
         ],
         "id": "PlayerProfileCompletionMissingField_Output"
       },
-      "CurrentPlayerProfileResponse_Output": {
-        "type": "object",
-        "properties": {
-          "profile": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/PlayerProfileResponse_Output"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "completion": {
-            "$ref": "#/components/schemas/PlayerProfileCompletionResponse_Output"
-          }
-        },
-        "required": [
-          "profile",
-          "completion"
-        ],
-        "id": "CurrentPlayerProfileResponse_Output",
-        "additionalProperties": false
+      "CurrentPlayerProfileResponseDto_Output": {
+        "$ref": "#/components/schemas/CurrentPlayerProfileResponse_Output"
       },
-      "SportCode": {
-        "type": "string",
-        "enum": [
-          "futevolei",
-          "beach_tennis",
-          "beach_volleyball"
-        ],
-        "id": "SportCode"
-      },
-      "PlayerLevel": {
-        "type": "string",
-        "enum": [
-          "beginner",
-          "intermediate",
-          "advanced"
-        ],
-        "id": "PlayerLevel"
-      },
-      "CreateCurrentPlayerProfileBody": {
+      "CreateCurrentPlayerProfileBodyDtoCreateCurrentPlayerProfileBody": {
         "type": "object",
         "properties": {
           "displayName": {
@@ -2356,20 +2359,38 @@
             "maxLength": 80
           },
           "mainSportCode": {
-            "$ref": "#/components/schemas/SportCode"
+            "$ref": "#/components/schemas/CreateCurrentPlayerProfileBodyDtoSportCode"
           },
           "mainSportLevel": {
-            "$ref": "#/components/schemas/PlayerLevel"
+            "$ref": "#/components/schemas/CreateCurrentPlayerProfileBodyDtoPlayerLevel"
           }
         },
         "required": [
           "displayName",
           "mainSportCode",
           "mainSportLevel"
-        ],
-        "id": "CreateCurrentPlayerProfileBody"
+        ]
       },
-      "UpdateCurrentPlayerProfileBody": {
+      "CreateCurrentPlayerProfileBodyDtoSportCode": {
+        "type": "string",
+        "enum": [
+          "futevolei",
+          "beach_tennis",
+          "beach_volleyball"
+        ]
+      },
+      "CreateCurrentPlayerProfileBodyDtoPlayerLevel": {
+        "type": "string",
+        "enum": [
+          "beginner",
+          "intermediate",
+          "advanced"
+        ]
+      },
+      "CreateCurrentPlayerProfileBodyDto": {
+        "$ref": "#/components/schemas/CreateCurrentPlayerProfileBodyDtoCreateCurrentPlayerProfileBody"
+      },
+      "UpdateCurrentPlayerProfileBodyDtoUpdateCurrentPlayerProfileBody": {
         "type": "object",
         "properties": {
           "displayName": {
@@ -2378,13 +2399,31 @@
             "maxLength": 80
           },
           "mainSportCode": {
-            "$ref": "#/components/schemas/SportCode"
+            "$ref": "#/components/schemas/UpdateCurrentPlayerProfileBodyDtoSportCode"
           },
           "mainSportLevel": {
-            "$ref": "#/components/schemas/PlayerLevel"
+            "$ref": "#/components/schemas/UpdateCurrentPlayerProfileBodyDtoPlayerLevel"
           }
-        },
-        "id": "UpdateCurrentPlayerProfileBody"
+        }
+      },
+      "UpdateCurrentPlayerProfileBodyDtoSportCode": {
+        "type": "string",
+        "enum": [
+          "futevolei",
+          "beach_tennis",
+          "beach_volleyball"
+        ]
+      },
+      "UpdateCurrentPlayerProfileBodyDtoPlayerLevel": {
+        "type": "string",
+        "enum": [
+          "beginner",
+          "intermediate",
+          "advanced"
+        ]
+      },
+      "UpdateCurrentPlayerProfileBodyDto": {
+        "$ref": "#/components/schemas/UpdateCurrentPlayerProfileBodyDtoUpdateCurrentPlayerProfileBody"
       }
     }
   }
